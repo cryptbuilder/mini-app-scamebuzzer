@@ -4,6 +4,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { useEffect } from "react";
 import { HomeComponent } from "@/components/Home";
 import { Settings } from "@/components/Settings";
 import { SidebarComponents } from "@/components/SidebarComponents";
@@ -14,12 +15,25 @@ import Profile from "@/components/profile";
 import { Plan } from "@/components/plan";
 import { PrivacyPolicy } from "@/components/PrivacyPolicy";
 import { useAuth } from "@/context/AuthContext";
+import { callReady } from "@/lib/farcaster";
 
 const App = () => {
   const { user, loading } = useAuth();
   const freePlan = localStorage.getItem("freePlan") === "true";
 
   console.log(freePlan, user, "app tsx------>");
+
+  // Call Farcaster SDK ready() when the app is loaded
+  useEffect(() => {
+    if (!loading) {
+      // Call ready when authentication loading is complete
+      const timer = setTimeout(async () => {
+        await callReady();
+      }, 100);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
 
   return (
     <Router>
