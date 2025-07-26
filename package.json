@@ -1,0 +1,48 @@
+{
+  "name": "wxt-react-starter",
+  "description": "manifest.json description",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "dev:web": "vite --port 3000",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "build:web": "vite build",
+    "preview:web": "vite preview --port 3000",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "compile": "tsc --noEmit",
+    "postinstall": "wxt prepare"
+  },
+  "dependencies": {
+    "@goplus/sdk-node": "^1.0.12",
+    "@headlessui/react": "^2.2.0",
+    "@tailwindcss/vite": "^4.0.12",
+    "axios": "^1.8.4",
+    "dotenv": "^16.4.7",
+    "ethers": "^6.13.5",
+    "fastest-levenshtein": "^1.0.16",
+    "lucide-react": "^0.487.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.3.0",
+    "secretvaults": "^0.0.0-alpha.1",
+    "tailwindcss": "^4.0.12",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.280",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@wxt-dev/module-react": "^1.1.2",
+    "typescript": "^5.6.3",
+    "vite": "^5.0.12",
+    "wxt": "^0.19.13"
+  }
+}
