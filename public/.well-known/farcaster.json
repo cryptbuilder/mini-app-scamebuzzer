@@ -1,0 +1,26 @@
+{
+  "miniapp": {
+    "version": "1",
+    "name": "ScamBuzzer",
+    "iconUrl": "https://mini-app-scamebuzzer.vercel.app/ScamBuzzer.png",
+    "homeUrl": "https://mini-app-scamebuzzer.vercel.app/",
+    "splashImageUrl": "https://mini-app-scamebuzzer.vercel.app/ScamBuzzer.png",
+    "splashBackgroundColor": "#000000",
+    "subtitle": "Protect yourself from scams",
+    "description": "ScamBuzzer helps you avoid scams and phishing attacks by scanning websites, emails, and social media links in real-time.",
+    "primaryCategory": "utility",
+    "tags": [
+      "security",
+      "scam-protection",
+      "phishing-detection",
+      "safety",
+      "web-protection"
+    ],
+    "heroImageUrl": "https://mini-app-scamebuzzer.vercel.app/ScamBuzzer.png",
+    "tagline": "Stay safe from scams",
+    "ogTitle": "ScamBuzzer",
+    "ogDescription": "Protect yourself from scams and phishing attacks with real-time scanning.",
+    "ogImageUrl": "https://mini-app-scamebuzzer.vercel.app/ScamBuzzer.png",
+    "noindex": false
+  }
+} 
