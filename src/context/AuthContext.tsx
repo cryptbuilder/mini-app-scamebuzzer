@@ -96,6 +96,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }
 
       console.log("Login response:", json);
+      
 
       const session = json.data.session;
       const expiresAt = Date.now() + session.expires_in * 1000;
