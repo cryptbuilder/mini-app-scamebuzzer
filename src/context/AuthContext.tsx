@@ -1,6 +1,7 @@
 import { fetchCurrentUser, logoutUser } from "@/lib/auth";
 import { createContext, useContext, useState, useEffect } from "react";
 import { trackGA } from "@/utils/ga";
+import { storeSession, getSession, removeSession, storeUserPlan } from "@/lib/farcasterStorage";
 
 interface AuthContextType {
   user: any;
@@ -49,7 +50,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const initializeAuth = async () => {
       try {
-        const storedSession = JSON.parse(localStorage.getItem("session") || "null");
+        const storedSession = await getSession();
         console.log("Stored session:", storedSession);
         
         if (storedSession) {
@@ -102,7 +103,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const expiresAt = Date.now() + session.expires_in * 1000;
       const sessionWithExpiry = { ...session, expiresAt };
       
-      localStorage.setItem("session", JSON.stringify(sessionWithExpiry));
+      await storeSession(sessionWithExpiry);
       setSession(sessionWithExpiry);
 
       if (json.data) {
@@ -119,7 +120,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setUser(formattedUser);
 
         const plan = formattedUser?.subscriptionData?.plan || 0;
-        localStorage.setItem("userPlan", JSON.stringify(plan));
+        await storeUserPlan(plan);
         setSubscription(formattedUser?.subscriptionData);
       }
     } catch (error) {
@@ -132,8 +133,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const accessFree = async () => {
     setLoading(true);
 
-    localStorage.setItem("freePlan", "true");
-    localStorage.setItem("userPlan", JSON.stringify(0));
+    // Store free plan in session storage
+    await storeUserPlan(0);
+    sessionStorage.setItem("freePlan", "true");
 
     await new Promise((resolve) => setTimeout(resolve, 300));
 
@@ -144,9 +146,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true);
     try {
       await logoutUser();
-      localStorage.removeItem("session");
-      localStorage.removeItem("freePlan");
-      localStorage.removeItem("userPlan");
+      await removeSession();
+      sessionStorage.removeItem("freePlan");
       setUser(null);
       setSession(null);
       setSubscription(null);

@@ -4,7 +4,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { HomeComponent } from "@/components/Home";
 import { Settings } from "@/components/Settings";
 import { SidebarComponents } from "@/components/SidebarComponents";
@@ -19,7 +19,20 @@ import { callReady } from "@/lib/farcaster";
 
 const App = () => {
   const { user, loading } = useAuth();
-  const freePlan = localStorage.getItem("freePlan") === "true";
+  const [freePlan, setFreePlan] = useState(false);
+
+  // Check free plan from sessionStorage
+  useEffect(() => {
+    const checkFreePlan = () => {
+      const isFreePlan = sessionStorage.getItem("freePlan") === "true";
+      setFreePlan(isFreePlan);
+    };
+    
+    checkFreePlan();
+    // Listen for storage changes
+    window.addEventListener('storage', checkFreePlan);
+    return () => window.removeEventListener('storage', checkFreePlan);
+  }, []);
 
   console.log(freePlan, user, "app tsx------>");
 
