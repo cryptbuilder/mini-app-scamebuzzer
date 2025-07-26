@@ -1,4 +1,10 @@
 {
+        "accountAssociation": {
+          "header": "eyJmaWQiOjQxNjQxMywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDk2YjBkQjFjMGM3NjU2OTc0RGE3RmNBMTRlMWFlMzg0NDIyOUVhY0YifQ",
+          "payload": "eyJkb21haW4iOiJtaW5pLWFwcC1zY2FtZWJ1enplci52ZXJjZWwuYXBwIn0",
+          "signature": "MHg5ZDFhNjAzMzk5MDQxNzIzMmE0MWU2M2M4NWE0ZTkwNjA3Y2E3MzY1ZThlZWRjM2EyNWQwYjNlMDExOTVkZmYwNDdmMTNjOWNlNTZlNzQ3ODQ3NTA2NjU2YzE0MTkyNDIwNTQyM2Q1NzY5ZTYzYTU2ODU1NzgyZjg0ZmVlYThkMzFi"
+        },
+      
   "miniapp": {
     "version": "1",
     "name": "ScamBuzzer",
